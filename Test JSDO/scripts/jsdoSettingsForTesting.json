@@ -2,7 +2,7 @@
 
 // Basic
 // username is: restuser, password is: password
-var jsdoSettingsTest1 = { 
+var jsdoSettings = { 
       "catalogURIs": "http://131.239.30.128:8980/SportsService/static/mobile/SportsService.json", 
       "serviceURI": "http://131.239.30.128:8980/SportsService",
       "authenticationModel": "basic",
@@ -13,7 +13,7 @@ var jsdoSettingsTest1 = {
 
 
 // Anonymous 
-var jsdoSettingsTest2 = {    
+var jsdoSettings3 = {    
       "catalogURIs": "http://oemobiledemo.progress.com/CustomerService/static/mobile/CustomerService.json",     
       "serviceURI": "http://oemobiledemo.progress.com/CustomerService",
       "authenticationModel": "Anonymous",

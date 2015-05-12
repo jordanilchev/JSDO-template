@@ -1,0 +1,23 @@
+
+// TO_DO: Will be removed
+
+// Basic
+// username is: restuser, password is: password
+var jsdoSettingsTest1 = { 
+      "catalogURIs": "http://131.239.30.128:8980/SportsService/static/mobile/SportsService.json", 
+      "serviceURI": "http://131.239.30.128:8980/SportsService",
+      "authenticationModel": "basic",
+      "displayFields": "WarehouseName",
+      "resourceName": "JsonFilterWarehouseTbl"
+};
+
+
+
+// Anonymous 
+var jsdoSettingsTest2 = {    
+      "catalogURIs": "http://oemobiledemo.progress.com/CustomerService/static/mobile/CustomerService.json",     
+      "serviceURI": "http://oemobiledemo.progress.com/CustomerService",
+      "authenticationModel": "Anonymous",
+      "displayFields": "Name",
+      "resourceName": "Customer"
+      }; 

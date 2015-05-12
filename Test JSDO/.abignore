@@ -36,11 +36,6 @@ obj/**/*
 # AppBuilder files
 .abignore
 .ab/**/*
-.app.json
-
-# TypeScript files
-**/*.ts
-**/*.map
 
 # Other
 **/*.bak

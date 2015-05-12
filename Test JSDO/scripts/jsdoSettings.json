@@ -1,0 +1,23 @@
+
+
+
+var jsdoSettingsTest = { 
+    /*
+      "catalogURIs": "", 
+      "serviceURI": "",
+      "authenticationModel": "", 
+      "displayFields": "",
+      "resourceName": ""
+    */
+};
+
+
+// username is: restuser, password is: password
+var jsdoSettings = { 
+      "catalogURIs": "http://131.239.30.128:8980/SportsService/static/mobile/SportsService.json", 
+      "serviceURI": "http://131.239.30.128:8980/SportsService",
+      "authenticationModel": "basic",
+      "displayFields": "WarehouseName",
+      "resourceName": "JsonFilterWarehouseTbl"
+};
+

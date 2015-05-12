@@ -1,79 +1,81 @@
 // Add data model for login page
-function loginDataSource (global) {
-     myApp.loginModel = kendo.observable({
+function loginDataSource(global) {
+    myApp.loginModel = kendo.observable({
         username: "",
         password: "",
-        
-         login: function(e) {    
+
+        login: function (e) {
             var that = this;
-            try { 
+            try {
                 var promise = jsdosession.login(this.get("username"), this.get("password"));
-                promise.done( function( jsdosession, result, info ) {
-                    try { 
-                        console.log("Success on login()");   
+                promise.done(function (jsdosession, result, info) {
+                    try {
+                        console.log("Success on login()");
                         that.set("isLoggedIn", true);
-                        myApp.loginModel.onBeforeShow( );
+                        myApp.loginModel.onBeforeShow();
                         var catPromise = jsdosession.addCatalog(jsdoSettings.catalogURIs);
-                        catPromise.done( function( jsdosession, result, details ) { 
-                            console.log("Success on addCatalog()");            
-                         });
-                        
-                        catPromise.fail( function( jsdosession, result, details) {
-                            myApp.loginModel.addCatalogErrorFn(jsdosession, 
-                                                    progress.data.Session.GENERAL_FAILURE, details);
-                        });  
-                    } 
-                    catch(ex) {
-                       var details = [{"catalogURI": jsdoSettings.catalogURIs, errorObject: ex}];
-                       myApp.loginModel.addCatalogErrorFn(jsdosession, 
-                                                    progress.data.Session.GENERAL_FAILURE, details);
-                    } 
- 
+                        catPromise.done(function (jsdosession, result, details) {
+                            console.log("Success on addCatalog()");
+                        });
+
+                        catPromise.fail(function (jsdosession, result, details) {
+                            myApp.loginModel.addCatalogErrorFn(jsdosession,
+                                progress.data.Session.GENERAL_FAILURE, details);
+                        });
+                    } catch (ex) {
+                        var details = [{
+                            "catalogURI": jsdoSettings.catalogURIs,
+                            errorObject: ex
+                        }];
+                        myApp.loginModel.addCatalogErrorFn(jsdosession,
+                            progress.data.Session.GENERAL_FAILURE, details);
+                    }
+
                 });
-                
-              
-               promise.fail( function(jsdosession, result, info) {
+
+
+                promise.fail(function (jsdosession, result, info) {
                     myApp.loginModel.loginErrorFn(jsdosession, result, info);
                 }); // end promise.fail
+            } catch (ex) {
+                myApp.loginModel.loginErrorFn(jsdosession, progress.data.Session.GENERAL_FAILURE, {
+                    errorObject: ex
+                });
             }
-            catch(ex) {
-               myApp.loginModel.loginErrorFn(jsdosession, progress.data.Session.GENERAL_FAILURE, 
-                                                    {errorObject: ex});
-            } 
         },
-         
-        logout: function(e) {
+
+        logout: function (e) {
             if (e) {
                 e.preventDefault();
             }
             var that = this;
             try {
                 var promise = jsdosession.logout();
-                promise.done( function(jsdosession, result, info) {
-                    console.log("Success on logout()"); 
-             		that.set("isLoggedIn", false);
-                    myApp.loginModel.onBeforeShow( );
-                    app.navigate("views/login.html");            
+                promise.done(function (jsdosession, result, info) {
+                    console.log("Success on logout()");
+                    that.set("isLoggedIn", false);
+                    myApp.loginModel.onBeforeShow();
+                    app.navigate("views/login.html");
                 });
-                promise.fail( function(jsdosession, result, info) {
-                     myApp.listModel.logoutErrorFn(jsdosession, result, info);
-                });              
+                promise.fail(function (jsdosession, result, info) {
+                    myApp.listModel.logoutErrorFn(jsdosession, result, info);
+                });
+            } catch (ex) {
+                myApp.listModel.logoutErrorFn(jsdosession, progress.data.Session.GENERAL_FAILURE, {
+                    errorObject: ex
+                });
             }
-            catch(ex) {
-               myApp.listModel.logoutErrorFn(jsdosession, progress.data.Session.GENERAL_FAILURE, 
-                                                        {errorObject: ex});
-            } 
         },
- 
-		checkEnter: function (e) {
+
+        checkEnter: function (e) {
             var that = this;
             if (e.keyCode == 13) {
                 $(e.target).blur();
                 that.login();
             }
         },
-        
-        onBeforeShow: function(e){
+
+        onBeforeShow: function (e) {
             // Always clear password
             myApp.loginModel.set("password", "");
             // If logged in, show welcome message
@@ -90,26 +92,27 @@ function loginDataSource (global) {
                 $("#credentials").parent().show();
                 $("#username").parent().show();
                 $("#password").parent().show();
-                $("#welcome").parent().hide();            }
-         },
-         
-        addCatalogErrorFn: function(jsdosession, result, details) {
-            console.log("Error on addCatalog()");            
+                $("#welcome").parent().hide();
+            }
+        },
+
+        addCatalogErrorFn: function (jsdosession, result, details) {
+            console.log("Error on addCatalog()");
             var msg = "";
-            if (details !== undefined  && Array.isArray(details)){
-                for (var i = 0; i < details.length; i++){
+            if (details !== undefined && Array.isArray(details)) {
+                for (var i = 0; i < details.length; i++) {
                     msg = msg + "\n" + details[i].errorObject;
                 }
             }
             showError(msg);
-            console.log(msg);   
+            console.log(msg);
             // Now logout
-            if (myApp.loginModel.isLoggedIn) { 
+            if (myApp.loginModel.isLoggedIn) {
                 myApp.loginModel.logout();
             }
         },
-        
-        logoutErrorFn: function(jsdosession, result, info) {
+
+        logoutErrorFn: function (jsdosession, result, info) {
             var msg = "Error on logout";
             showError(msg);
             if (info.errorObject !== undefined) {
@@ -122,7 +125,7 @@ function loginDataSource (global) {
             console.log(msg);
         },
 
-         loginErrorFn: function(jsdosession, result, info) {
+        loginErrorFn: function (jsdosession, result, info) {
             console.log("Error on login");
             var msg = "";
             switch (result) {
@@ -133,7 +136,7 @@ function loginDataSource (global) {
                 default:
                     msg = "Service is unavailable";
                     break;
-            }       
+            }
             showError(msg);
             if (info.xhr) {
                 msg = msg + " status (from jqXHT):" + info.xhr.status;
@@ -148,5 +151,5 @@ function loginDataSource (global) {
             }
             console.log(msg);
         }
-    });  
+    });
 }

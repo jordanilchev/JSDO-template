@@ -1,22 +1,19 @@
+var baseApp = function () {};
 
-var baseApp = function(){};
+baseApp.prototype = function () {
 
-baseApp.prototype = function() {
-
-	showLoginPage = function () {        
+    showLoginPage = function () {
         // authenticationModel defaults to "ANONYMOUS"
-        if (!jsdoSettings.authenticationModel || 
-             jsdoSettings.authenticationModel.toUpperCase() === "ANONYMOUS") {
+        if (!jsdoSettings.authenticationModel ||
+            jsdoSettings.authenticationModel.toUpperCase() === "ANONYMOUS") {
             return false;
-        } 
-        else {
+        } else {
             return true;
         }
-	};
+    };
 
-	showError = function (message){
+    showError = function (message) {
         navigator.notification.alert(message);
-	};
-     
-}();
+    };
 
+}();

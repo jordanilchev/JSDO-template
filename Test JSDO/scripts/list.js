@@ -9,6 +9,7 @@ function listDataSource(global) {
         onBeforeShow: function (e) {
             if (!myApp.loginModel.isLoggedIn && jsdoSettings.authenticationModel != "Anonymous") {
                 showError("Please login first");
+                e.preventDefault();
             }
         },
 

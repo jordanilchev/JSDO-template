@@ -1,0 +1,45 @@
+{
+  "ProjectName": "Test JSDO",
+  "ProjectGuid": "80125c08-ba14-4f05-b8ab-e98e64f29a5d",
+  "projectVersion": 1,
+  "AppIdentifier": "com.telerik.TestJSDO",
+  "DisplayName": "Test JSDO",
+  "Author": "",
+  "Description": "",
+  "BundleVersion": "1.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "3.7.0",
+  "AndroidPermissions": [
+    "android.permission.INTERNET"
+  ],
+  "DeviceOrientations": [
+    "Portrait",
+    "Landscape"
+  ],
+  "AndroidHardwareAcceleration": "false",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8Publisher": "",
+  "WP8Capabilities": [
+    "ID_CAP_NETWORKING",
+    "ID_CAP_WEBBROWSERCOMPONENT"
+  ],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{22939989-c83a-4261-b711-3392542b361f}",
+  "WP8ProductID": "{ffa55ff6-05e2-4056-b7f7-8c7ceeb352c1}",
+  "WPSdk": "8.0",
+  "WP8PackageIdentityName": "1234Telerik.TestJSDO",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ]
+}
